@@ -1,0 +1,9 @@
+[wrap-file]
+source_url = https://github.com/NVIDIA/stdexec/archive/refs/tags/nvhpc-24.09.tar.gz
+source_filename = nvhpc-24.09.tar.gz
+source_hash =d2d811c852dc6c53527a244a54ae343d6b65a50c23ea49f93723e3082435fff4
+directory = stdexec-nvhpc-24.09
+patch_directory = stdexec-patch
+
+[provide]
+dependency_names = stdexec
