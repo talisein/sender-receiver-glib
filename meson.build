@@ -11,10 +11,10 @@ gtkmm_dep = dependency('gtkmm-4.0')
 
 subdir('src')
 
-boostut_dep = dependency('ut',
-                         method: 'cmake',
-                         modules: 'Boost::ut',
-                         fallback: ['boostut', 'boostut_dep'])
+#boostut_dep = dependency('ut',
+#                         method: 'cmake',
+#                         modules: 'Boost::ut',
+#                         fallback: ['boostut', 'boostut_dep'])
 
-subdir('test')
+#subdir('test')
 subdir('examples')

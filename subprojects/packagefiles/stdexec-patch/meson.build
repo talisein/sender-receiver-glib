@@ -88,7 +88,7 @@ stdexec_tests_exe = executable('tests', 'test/test_main.cpp',
                                dependencies: [stdexec_dep, catch2_dep])
 test('stdexec_tests', stdexec_tests_exe)
 
-doxygen = find_program('doxygen')
+#doxygen = find_program('doxygen')
 
 stdexec_public_headers = [
   meson.project_source_root() / 'include/exec/any_sender_of.hpp',
@@ -136,29 +136,29 @@ stdexec_public_headers = [
   meson.project_source_root() / 'include/tbbexec/tbb_thread_pool.hpp',
 ]
 
-doc_conf_data = configuration_data()
-doc_conf_data.set('DOXYGEN_INPUT_DIR', meson.project_source_root() / 'include')
-doc_conf_data.set('DOXYGEN_OUTPUT_DIR', meson.project_build_root() / 'doxygen')
-doxygen_index_file = meson.project_build_root() / 'doxygen' / 'xml' / 'index.xml'
-doc_conf_data.set('DOXYGEN_INDEX_FILE', doxygen_index_file)
+#doc_conf_data = configuration_data()
+#doc_conf_data.set('DOXYGEN_INPUT_DIR', meson.project_source_root() / 'include')
+#doc_conf_data.set('DOXYGEN_OUTPUT_DIR', meson.project_build_root() / 'doxygen')
+#doxygen_index_file = meson.project_build_root() / 'doxygen' / 'xml' / 'index.xml'
+#doc_conf_data.set('DOXYGEN_INDEX_FILE', doxygen_index_file)
 
-doxyfile = configure_file(input: 'docs/Doxyfile.in',
-                          output: '@BASENAME@',
-                          configuration: doc_conf_data)
+#doxyfile = configure_file(input: 'docs/Doxyfile.in',
+#                          output: '@BASENAME@',
+#                          configuration: doc_conf_data)
 
-tag_file = custom_target(output: 'doxygen',
-                         input: doxyfile,
-                         command: [doxygen, '@INPUT@'],
-                         depend_files: stdexec_public_headers,
-                         build_by_default: true)
+#tag_file = custom_target(output: 'doxygen',
+#                         input: doxyfile,
+#                         command: [doxygen, '@INPUT@'],
+#                         depend_files: stdexec_public_headers,
+#                         build_by_default: true)
 
-sphinx = find_program('sphinx-build')
+#sphinx = find_program('sphinx-build')
 
-tag_file = custom_target(output: 'sphinx-docs',
-                         input: doxyfile,
-                         command: [sphinx, '-b', 'html',
-                                   '-Dbreathe_projects.stdexec=' + meson.project_build_root() / 'doxygen' / 'xml',
-                                   meson.project_source_root() / 'docs' / 'source',
-                                   meson.project_build_root() / 'sphinx-docs'],
-                         depends: tag_file,
-                         build_by_default: true)
+#tag_file = custom_target(output: 'sphinx-docs',
+#                         input: doxyfile,
+#                         command: [sphinx, '-b', 'html',
+#                                   '-Dbreathe_projects.stdexec=' + meson.project_build_root() / 'doxygen' / 'xml',
+#                                   meson.project_source_root() / 'docs' / 'source',
+#                                   meson.project_build_root() / 'sphinx-docs'],
+#                         depends: tag_file,
+#                         build_by_default: true)
