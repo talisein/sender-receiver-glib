@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/gtkmm/example">
+    <file>hatsune-miku.mp4</file>
+  </gresource>
+</gresources>

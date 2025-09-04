@@ -63,17 +63,16 @@ public:
         m_grid(),
         m_button_blocking("Blocking"),
         m_button_stdexec("stdexec"),
-        m_mediafile(Gtk::MediaFile::create_for_filename("/home/agpotter/git/sender-receiver-glib/examples/hatsune-miku.gif")),
-        m_video(m_mediafile)
+        m_mediafile(Gtk::MediaFile::create_for_resource("/org/gtkmm/example/hatsune-miku.mp4")),
+        m_picture(m_mediafile)
     {
-        m_mediafile->set_loop(true);
         // Sets the margin around the button.
         m_button_blocking.set_margin(10);
         m_button_stdexec.set_margin(10);
-        m_video.set_margin(10);
 
-        m_video.set_autoplay(true);
-        m_video.set_loop(true);
+        m_mediafile->set_loop(true);
+        m_mediafile->play();
+
         // When the button receives the "clicked" signal, it will call the
         // on_button_clicked() method defined below.
         m_button_blocking.signal_clicked().connect(sigc::mem_fun(*this,
@@ -83,7 +82,7 @@ public:
         // This packs the button into the Window (a container).
         m_grid.attach(m_button_blocking,0,0);
         m_grid.attach(m_button_stdexec,0,1);
-        m_grid.attach(m_video,1,0,1,2);
+        m_grid.attach(m_picture,1,0,1,2);
         set_child(m_grid);
     }
     ~HelloWorld() override { worker_thread_stop(); };
@@ -161,7 +160,7 @@ private:
                 std::cout << "stdexec: transfer finished, changing threads...\n";
                 return size;
             })
-            | stdexec::transfer(GUIScheduler)
+            | stdexec::continues_on(GUIScheduler)
             | stdexec::then([this](curl_off_t size) {
                 std::cout << "stdexec: Back in GUI thread, reporting finish.\n";
                 m_button_stdexec.set_sensitive(true);
@@ -193,7 +192,7 @@ private:
     Gtk::Button m_button_blocking;
     Gtk::Button m_button_stdexec;
     Glib::RefPtr<Gtk::MediaFile> m_mediafile;
-    Gtk::Video m_video;
+    Gtk::Picture m_picture;
 };
 
 int main(int argc, char *argv[])

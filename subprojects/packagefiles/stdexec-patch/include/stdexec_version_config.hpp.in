@@ -1,0 +1,6 @@
+#pragma once
+
+#define STDEXEC_VERSION_MAJOR @0@
+#define STDEXEC_VERSION_MINOR @1@
+#define STDEXEC_VERSION_PATCH @2@
+#define STDEXEC_VERSION "@VERSION@"
